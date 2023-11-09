@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PuzzleStick : MonoBehaviour
 {
-    Vector2 sticked;
+    public GameObject sticked;
+    bool final;
 
     // Start is called before the first frame update
     void Start()
@@ -20,15 +21,20 @@ public class PuzzleStick : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (gameObject.CompareTag(this.gameObject.tag))
+        if (final)
         {
-            sticked = new Vector2(1.2f, 12.23f);
-            Debug.Log("It's the same");
-        }
+            sticked.transform.position = new Vector2(-2.39f, 0.9899999f);
 
+        }
 
     }
 
+    void OnTriggerEnter2D (Collider2D other)
+    {
+        if (other.gameObject.CompareTag("PP1"))
+            {
+                final = true;
+            }
+        }
+    }
 
-
-}
